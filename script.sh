@@ -1,19 +1,23 @@
 # First we want to know the contents of the storage file
-
-# Making reference to our previous project the s3 bukcet lister
-
 function list() {
     aws s3 ls s3://clouduploadertds
 }
 
-function download() {
-    aws s3 cp $1 /downloads
-}
+# Calling the function to get the list of items in the cloud storage
 
 echo "Here are the files in your s3 bucket"
 echo " "
 list
+# Collecting user input on choice of file to download
+read -p "What would you like to download " file
 
-if [[ -e $1 ]]; then
-    download
-fi
+
+# function to download file from the cloud onto our local device
+
+function download() {
+    aws s3 cp s3://clouduploadertds/${file} downloads
+}
+
+# validation to check if the file already exists in the downloads folder
+
+ download
