@@ -1,4 +1,23 @@
 # First we want to know the contents of the storage file
+function clearfolder() {
+    > download
+
+}
+
+menu() {
+echo "Before executing the script would you like to empty the downloads file"
+echo " "
+}
+
+case ${answer} in
+    
+    clearfolder
+    ;;
+esac
+
+
+
+ 
 function list() {
     aws s3 ls s3://clouduploadertds
 }
@@ -21,3 +40,9 @@ function download() {
 # validation to check if the file already exists in the downloads folder
 
  download
+
+ # function to clear the download folder on demand
+
+
+
+ 
