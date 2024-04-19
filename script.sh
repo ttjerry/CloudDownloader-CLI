@@ -6,14 +6,12 @@ function clearfolder() {
 
 menu() {
 echo "Before executing the script would you like to empty the downloads file"
+read answer
 echo " "
 }
 
-case ${answer} in
-    
-    clearfolder
-    ;;
-esac
+
+
 
 
 
