@@ -1,19 +1,7 @@
 # First, we want to know the contents of the storage file
 function clearfolder() {
-    rm -ri download
+    rm -rf download
 }
-
-menu() {
-    read -p "Do you want to clear the downloads folder? (1 for yes, 2 for no) " answer
-    answer=${answer:-2}
-    echo " "
-    if [[ "$answer" == "1" ]] ; then
-        clearfolder;
-    else
-        echo "You can proceed to downl"
-    fi
-}
-
 
 function list() {
     echo "Here are the files in your s3 bucket"
@@ -23,13 +11,26 @@ function list() {
     local file
     read -p "What would you like to download " file
     # Downloading the selected file
-    mkdir -p download && if aws s3 cp s3://clouduploadertds/$file download/$file; then
+    if  aws s3 cp s3://clouduploadertds/$file downloads/$file; then
         echo "File downloaded successfully!"
     else
-        echo "Download failed. Check your internet connectivity and try again."
+        echo "File download failed"  
+    fi
+    
+}
+
+menu() {
+    read -p "Do you want to clear the downloads folder? (1 for yes, 2 for no) " answer
+    answer=${answer:-2}
+    echo " "
+    if [[ "$answer" == "1" ]] ; then
+        clearfolder;
+    else 
+        echo "You can proceed with your download"
+        list
     fi
 }
 
-# error handling for the download
-
 menu
+
+# error handling for the download
