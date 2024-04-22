@@ -14,7 +14,7 @@ function list() {
     if  aws s3 cp s3://clouduploadertds/$file downloads/$file; then
         echo "File downloaded successfully!"
     else
-        echo "File download failed"  
+        echo "File download failed check your internet connectiivty and try again"  
     fi
     
 }
@@ -34,3 +34,4 @@ menu() {
 menu
 
 # error handling for the download
+
